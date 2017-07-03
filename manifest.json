@@ -1,0 +1,25 @@
+{
+"manifest_version": 2,
+  "name": "Append Query Parameters",
+  "version": "0.1",
+  "description": "Appends selected query parameters to current sites url and refreshes.",
+//   "icons": { "128": "icon_128.png" },
+  "background": {
+    "persistent": true,
+    "scripts": ["background.js"]
+  },
+  "permissions": ["tabs"],
+  "browser_action": {
+    "default_title": "",
+    // "default_icon": "icon_19.png",
+    "default_popup": "popup.html"
+  },
+    "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": ["main.js"]
+    }
+  ]
+}
