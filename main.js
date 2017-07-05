@@ -1,4 +1,4 @@
-console.log('js loaded');
+// console.log('js loaded');
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
