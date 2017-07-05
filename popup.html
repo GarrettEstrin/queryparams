@@ -3,17 +3,24 @@
         <style>
             body {
                 width: 200px;
-                background-color: red;
+                background-color: #00AAE3;
+                font-size: 16px;
             }
         </style>
     </head>
     <body>
+        <img src="cflogo_transparent.png" alt="" style="margin: 0 auto;display: block;">
+        <br>
         Select the query params you want to amend to the current url:
         <br>
         <input type="checkbox" name="checkbox" value="cookiereset=1">Cookiereset</input> <br>
         <input type="checkbox" name="checkbox" value="vn=n-douglas-qa">vn=n-douglas-qa</input> <br>
 
-        <input type="submit" value="Add Params" id="submit"></submit>
+        <hr>
+        <input type="checkbox" name="add_to_params">Add to current params</input><br>
+        <br>
+        <input type="submit" value="Add Params" id="submit"></submit> <br>
+        Click without any options to clear params.
         <script src="background.js"></script> 
     </body>
 </html>
