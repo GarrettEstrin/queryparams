@@ -9,11 +9,37 @@
             label {
                 cursor: pointer;
             }
-
-            input#submit {
+            input {
+                /*width: 100%;*/
+            }
+            input#submit, input#addCustomSubmit {
                 width: 100%;
                 border: solid 2px black;
                 height: 30px;
+            }
+            input#submit:hover {
+                background-color: white;
+            }
+            input#submit:active {
+                background-color: initial;
+            }
+            .input {
+                width: 100%;
+            }
+            #customParamInput {
+                margin: 0 0 3px 0;
+            }
+            .remove {
+                cursor: pointer;
+                float: right;
+                position: relative;
+                right: 20px;
+                color: white;
+                background-color: black;
+                padding: 2px 6px;
+                border-radius: 50%;
+                font-size: 10px;
+                top: 2px;
             }
         </style>
     </head>
@@ -24,14 +50,19 @@
         <label><input type="checkbox" name="checkbox" value="vn=n-douglas-qa">vn=n-douglas-qa</label><br>
         <label><input type="checkbox" name="checkbox" value="istest=true">Istest=true</label><br>
         Phone Number:
-        <input type="text" name="number" value=""><br>
-
+        <input type="text" name="number" class="input" value=""><br>
+        <div id="custom-params-section"></div>
         <hr>
         Options: <br>
         <label><input type="checkbox" name="add_to_params">Add to current params</label><br>
 
         <input type="submit" value="Add Params" id="submit"></submit> <br>
         Click without any options to clear params.
+
+        <hr>
+        Add custom param: <br>
+        <input type="text" class="input" id="customParamInput"><br>
+        <input type="submit" value="Add Custom Param" id="addCustomSubmit"></submit>
         <script src="background.js"></script> 
     </body>
 </html>
