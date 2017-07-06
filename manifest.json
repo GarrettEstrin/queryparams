@@ -3,7 +3,7 @@
   "name": " Centerfield - Append Query Parameters",
   "version": "0.1",
   "description": "Appends selected query parameters to current sites url and refreshes.",
-  "icons": { "128": "favicon.png" },
+  "icons": { "128": "logo-large.png" },
   "background": {
     "persistent": true,
     "scripts": ["background.js"]
