@@ -31,7 +31,7 @@ function appendParams(){
         }
         // add params from text inputs
         if(number.value.length>0){
-            params.push("number=" + number.value);
+            params.push("phone=" + number.value);
         }
         // if adding to params, change leading "?" to "&"
         if(add_params){
