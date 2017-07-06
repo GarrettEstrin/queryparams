@@ -4,7 +4,7 @@
             body {
                 width: 200px;
                 background-color: #00AAE3;
-                font-size: 16px;
+                font-size: 13.5px;
             }
             label {
                 cursor: pointer;
@@ -16,11 +16,12 @@
                 width: 100%;
                 border: solid 2px black;
                 height: 30px;
+                cursor: pointer;
             }
-            input#submit:hover {
+            input#submit:hover, input#addCustomSubmit:hover {
                 background-color: white;
             }
-            input#submit:active {
+            input#submit:active, input#addCustomSubmit:active {
                 background-color: initial;
             }
             .input {
@@ -41,13 +42,16 @@
                 font-size: 10px;
                 top: 2px;
             }
+            p {
+                margin: 0;
+            }
         </style>
     </head>
     <body>
         <img src="cflogo_transparent.png" alt="" style="margin: 0 auto;display: block;">
         <p>Select the query params you want to amend to the current url:</p>
         <label><input type="checkbox" name="checkbox" value="cookiereset=1">Cookiereset</label><br>
-        <label><input type="checkbox" name="checkbox" value="vn=n-douglas-qa">vn=n-douglas-qa</label><br>
+        <!--<label><input type="checkbox" name="checkbox" value="vn=n-douglas-qa">vn=n-douglas-qa</label><br>-->
         <label><input type="checkbox" name="checkbox" value="istest=true">Istest=true</label><br>
         Phone Number:
         <input type="text" name="number" class="input" value=""><br>

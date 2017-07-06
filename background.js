@@ -71,8 +71,11 @@ function saveCus(){
 // function to add a custom param
 function addCustomParam(){
     var customParam = document.getElementById('customParamInput').value
-    localStorage["customParam" + localStorage.length] = customParam
-    getCustomParams();
+    if(customParam.length>0){
+        localStorage["customParam" + localStorage.length] = customParam
+        getCustomParams();
+        document.getElementById('customParamInput').value = "";
+    }
 }
 
 // Click listener for add custom param button
@@ -81,16 +84,11 @@ customParamSubmit.addEventListener('click', addCustomParam)
 // retrieve and print custom params from localStorage to popup
 function getCustomParams(){
     console.log("getCustomParams")
-    var num = localStorage.length
     customParams = []
     for(i=0;i<localStorage.length;i++){
         customParams.push(localStorage["customParam" + i])
     }
     console.log(customParams)
-    // chrome.tabs.query({active: true, 'currentWindow': true}, function(tabs) {
-    //     activeTab = tabs[0];
-    //     chrome.tabs.sendMessage(activeTab.id, {"message": "sent_custom", "params": customParams});
-    // })
     var customSection = document.getElementById('custom-params-section')
     var html = "";
     customParams.forEach(function(param, thisArg){
@@ -101,6 +99,7 @@ function getCustomParams(){
     for(i=0;i<removeBtns.length;i++){
         removeBtns[i].addEventListener('click', removeParam)
     }
+
 }
 
 getCustomParams();
