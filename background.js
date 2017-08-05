@@ -18,7 +18,7 @@ function appendParams(){
         var url = tabs[0].url;
         var urlArray = url.split("?")
         var emptyUrl = urlArray[0]
-        
+
         // console.log(url);
         // console.log(add_params);
     //    add_params ? console.log("add to params") : console.log("replace params");
@@ -27,7 +27,7 @@ function appendParams(){
         for(i=0;i<checkboxes.length;i++){
             if (checkboxes[i].checked==true){
                 params.push(checkboxes[i].value)
-            } 
+            }
         }
         // add params from text inputs
         if(number.value.length>0){
@@ -72,7 +72,7 @@ function saveCus(){
 function addCustomParam(){
     var customParam = document.getElementById('customParamInput').value
     if(customParam.length>0){
-        localStorage["customParam" + localStorage.length] = customParam
+        localStorage["customParam"+localStorage.length] = customParam
         getCustomParams();
         document.getElementById('customParamInput').value = "";
     }
@@ -86,14 +86,17 @@ function getCustomParams(){
     console.log("getCustomParams")
     customParams = []
     for(i=0;i<localStorage.length;i++){
-        customParams.push(localStorage["customParam" + i])
+        customParams.push(localStorage[Object.keys(localStorage)[i]])
     }
     console.log(customParams)
     var customSection = document.getElementById('custom-params-section')
     var html = "";
-    customParams.forEach(function(param, thisArg){
-        html = `<label><input type="checkbox" name="checkbox" value="${param}">${param}</label><span class="remove" id="${thisArg}">X</span><br>` + html;
-    })
+    for(i=0;i<localStorage.length;i++){
+      html = `<label><input type="checkbox" name="checkbox" value="${localStorage[Object.keys(localStorage)[i]]}">${localStorage[Object.keys(localStorage)[i]]}</label><span class="remove" id="${Object.keys(localStorage)[i]}">X</span><br>` + html;
+    }
+    // customParams.forEach(function(param, thisArg){
+    //     html = `<label><input type="checkbox" name="checkbox" value="${param}">${param}</label><span class="remove" id="${thisArg}">X</span><br>` + html;
+    // })
     customSection.innerHTML = html;
     removeBtns = document.getElementsByClassName('remove')
     for(i=0;i<removeBtns.length;i++){
@@ -107,6 +110,6 @@ getCustomParams();
 // function to remove custom param
 function removeParam(){
     console.log(this.id)
-    localStorage.removeItem("customParam"+this.id)
+    localStorage.removeItem(this.id)
     getCustomParams();
 }
