@@ -1,7 +1,7 @@
 {
 "manifest_version": 2,
   "name": " Centerfield - Append Query Parameters",
-  "version": "0.1",
+  "version": "0.2",
   "description": "Appends selected query parameters to current sites url and refreshes.",
   "icons": { "128": "logo-large.png" },
   "background": {
