@@ -1,13 +1,8 @@
 console.log('background js loaded')
 var submit = document.getElementById('submit')
 var customParamSubmit = document.getElementById('addCustomSubmit')
-// if(!localStorage["num_of_custom"]){
-//     var num_of_custom = 0
-//     localStorage["num_of_custom"] = num_of_custom;
-// } else {
-//     var num_of_custom = localStorage["num_of_custom"]
-// }
-
+// variable for localStorage clear
+var LS = false;
 // function that is run when submit button is pressed
 function appendParams(){
     chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
@@ -18,10 +13,6 @@ function appendParams(){
         var url = tabs[0].url;
         var urlArray = url.split("?")
         var emptyUrl = urlArray[0]
-
-        // console.log(url);
-        // console.log(add_params);
-    //    add_params ? console.log("add to params") : console.log("replace params");
         params = ["?"];
         // add params from checkboxes
         for(i=0;i<checkboxes.length;i++){
@@ -47,10 +38,15 @@ function appendParams(){
         } else {
             url = emptyUrl + paramsString
         }
+        if(document.getElementById('clearLocal').checked==true){
+            console.log("clear local storage is checked")
+            LS = true;
+            console.log(LS)
+        }
         // console.log(url);
         chrome.tabs.query({active: true, 'currentWindow': true}, function(tabs) {
             activeTab = tabs[0];
-            chrome.tabs.sendMessage(activeTab.id, {"message": "sent_url", "url": url});
+            chrome.tabs.sendMessage(activeTab.id, {"message": "sent_url", "url": url, "localStorage": LS});
             url = "";
             params = "";
             value = "";
