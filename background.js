@@ -66,16 +66,19 @@ function saveCus(){
 
 // function to add a custom param
 function addCustomParam(){
+    id = new Date();
     var customParam = document.getElementById('customParamInput').value
-    if(customParam.length>0){
-        localStorage["customParam"+localStorage.length] = customParam
+        localStorage["customParam"+id] = customParam;
         getCustomParams();
         document.getElementById('customParamInput').value = "";
-    }
 }
 
 // Click listener for add custom param button
-customParamSubmit.addEventListener('click', addCustomParam)
+customParamSubmit.addEventListener('click', function(){
+    if(document.getElementById('customParamInput').value.length > 0){
+        addCustomParam();
+    } else {console.log('cannot add empty param')}
+})
 
 // retrieve and print custom params from localStorage to popup
 function getCustomParams(){
