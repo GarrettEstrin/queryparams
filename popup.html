@@ -9,16 +9,16 @@
             label {
                 cursor: pointer;
             }
-            input#submit, input#addCustomSubmit {
+            input#submit, input#addCustomSubmit, input#testTel {
                 width: 100%;
                 border: solid 2px black;
                 height: 30px;
                 cursor: pointer;
             }
-            input#submit:hover, input#addCustomSubmit:hover {
+            input#submit:hover, input#addCustomSubmit:hover, input#testTel:hover {
                 background-color: white;
             }
-            input#submit:active, input#addCustomSubmit:active {
+            input#submit:active, input#addCustomSubmit:active, input#testTel:active {
                 background-color: initial;
             }
             .input {
@@ -50,7 +50,6 @@
         <label><input type="checkbox" name="checkbox" value="cookiereset=1">Cookiereset</label><br>
         <label><input type="checkbox" name="checkbox" value="istest=true">Istest=true</label><br>
         <label><input type="checkbox" id="clearLocal" name="clearLocal" value="">Clear LocalStorage</label><br>
-
         Phone Number:
         <input type="text" name="number" class="input" value=""><br>
         <div id="custom-params-section"></div>
@@ -61,6 +60,8 @@
         <input type="submit" value="Add Params" id="submit"></submit> <br>
         Click without any options to clear params.
 
+        <hr>
+        <input type="submit" value="Test Tel Links" id="testTel"></submit>
         <hr>
         Add custom param: <br>
         <input type="text" class="input" id="customParamInput"><br>

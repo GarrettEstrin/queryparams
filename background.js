@@ -1,6 +1,7 @@
 console.log('background js loaded')
 var submit = document.getElementById('submit')
 var customParamSubmit = document.getElementById('addCustomSubmit')
+var testTelBtn = document.getElementById('testTel');
 // variable for localStorage clear
 var LS = false;
 // function that is run when submit button is pressed
@@ -43,7 +44,6 @@ function appendParams(){
             LS = true;
             console.log(LS)
         }
-        // console.log(url);
         chrome.tabs.query({active: true, 'currentWindow': true}, function(tabs) {
             activeTab = tabs[0];
             chrome.tabs.sendMessage(activeTab.id, {"message": "sent_url", "url": url, "localStorage": LS});
@@ -58,11 +58,11 @@ function appendParams(){
 submit.addEventListener('click', appendParams)
 
 // save custom input
-function saveCus(){
-    chrome.storage.sync.set({ "yourBody": "myBody" }, function(data){
-        console.log(data)
-});
-}
+// function saveCus(){
+//     chrome.storage.sync.set({ "yourBody": "myBody" }, function(data){
+//         console.log(data)
+// });
+// }
 
 // function to add a custom param
 function addCustomParam(){
@@ -103,6 +103,16 @@ function getCustomParams(){
     }
 
 }
+
+// test Tel links functionality
+testTelBtn.addEventListener('click', function(){
+    chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
+        chrome.tabs.query({active: true, 'currentWindow': true}, function(tabs) {
+            activeTab = tabs[0];
+            chrome.tabs.sendMessage(activeTab.id, {"message": "testTel"});
+        });
+    })
+})
 
 getCustomParams();
 

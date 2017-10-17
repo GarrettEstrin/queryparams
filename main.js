@@ -12,14 +12,20 @@ chrome.runtime.onMessage.addListener(
       window.location.href = request.url;
       // console.log(request.url);
     }
+    if(request.message === 'testTel'){
+      testLinks();
+    }
   }
 );
 
-// chrome.runtime.onMessage.addListener(
-//   function(request, sender, sendResponse) {
-//     if( request.message === "sent_custom" ) {
-//       console.log(request.params);
 
-//     }
-//   }
-// );
+function testLinks(){
+  var links = $('a[href^="tel"]');
+  links.on('click', function(){
+    alert("This link will dial: " + this.href);
+  })
+}
+
+
+
+
