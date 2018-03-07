@@ -9,23 +9,27 @@
             label {
                 cursor: pointer;
             }
-            input#submit, input#addCustomSubmit, input#testTel {
+            input#submit, input#addCustomSubmit, input#testTel, input#cssTest {
                 width: 100%;
                 border: solid 2px black;
                 height: 30px;
                 cursor: pointer;
+                background: #dddddd;
             }
-            input#submit:hover, input#addCustomSubmit:hover, input#testTel:hover {
+            input#submit:hover, input#addCustomSubmit:hover, input#testTel:hover, input#cssTest:hover {
                 background-color: white;
             }
-            input#submit:active, input#addCustomSubmit:active, input#testTel:active {
-                background-color: initial;
+            input#submit:active, input#addCustomSubmit:active, input#testTel:active, input#cssTest:active {
+                background: #dddddd;
             }
             .input {
                 width: 100%;
             }
             #customParamInput {
                 margin: 0 0 3px 0;
+            }
+            input#cssTest {
+                margin: 3px 0 0;
             }
             .remove {
                 cursor: pointer;
@@ -66,6 +70,7 @@
         Add custom param: <br>
         <input type="text" class="input" id="customParamInput"><br>
         <input type="submit" value="Add Custom Param" id="addCustomSubmit"></submit>
+        <input type="submit" value="CSS Report" id="cssTest"></submit>
         <script src="background.js"></script> 
     </body>
 </html>

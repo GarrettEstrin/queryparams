@@ -1,7 +1,7 @@
-console.log('background js loaded')
 var submit = document.getElementById('submit')
 var customParamSubmit = document.getElementById('addCustomSubmit')
 var testTelBtn = document.getElementById('testTel');
+var testCSSBtn = document.getElementById('cssTest');
 // variable for localStorage clear
 var LS = false;
 // function that is run when submit button is pressed
@@ -40,9 +40,7 @@ function appendParams(){
             url = emptyUrl + paramsString
         }
         if(document.getElementById('clearLocal').checked==true){
-            console.log("clear local storage is checked")
             LS = true;
-            console.log(LS)
         }
         chrome.tabs.query({active: true, 'currentWindow': true}, function(tabs) {
             activeTab = tabs[0];
@@ -77,25 +75,20 @@ function addCustomParam(){
 customParamSubmit.addEventListener('click', function(){
     if(document.getElementById('customParamInput').value.length > 0){
         addCustomParam();
-    } else {console.log('cannot add empty param')}
+    } else {}
 })
 
 // retrieve and print custom params from localStorage to popup
 function getCustomParams(){
-    console.log("getCustomParams")
     customParams = []
     for(i=0;i<localStorage.length;i++){
         customParams.push(localStorage[Object.keys(localStorage)[i]])
     }
-    console.log(customParams)
     var customSection = document.getElementById('custom-params-section')
     var html = "";
     for(i=0;i<localStorage.length;i++){
       html = `<label><input type="checkbox" name="checkbox" value="${localStorage[Object.keys(localStorage)[i]]}">${localStorage[Object.keys(localStorage)[i]]}</label><span class="remove" id="${Object.keys(localStorage)[i]}">X</span><br>` + html;
     }
-    // customParams.forEach(function(param, thisArg){
-    //     html = `<label><input type="checkbox" name="checkbox" value="${param}">${param}</label><span class="remove" id="${thisArg}">X</span><br>` + html;
-    // })
     customSection.innerHTML = html;
     removeBtns = document.getElementsByClassName('remove')
     for(i=0;i<removeBtns.length;i++){
@@ -118,7 +111,24 @@ getCustomParams();
 
 // function to remove custom param
 function removeParam(){
-    console.log(this.id)
     localStorage.removeItem(this.id)
     getCustomParams();
+}
+
+testCSSBtn.addEventListener('click', getCSStestUrl);
+function getCSStestUrl(){
+    chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
+        chrome.tabs.query({active: true, 'currentWindow': true}, function(tabs) {
+            var activeTab = tabs[0];
+            var url = new URL(activeTab.url);
+            var domain = url.hostname;
+            if(domain == "offer.sprint.com"){
+                domain = "//staging.wp." + domain + "/backstop_data/html_report/index.html"
+            } else {
+                domain = domain.replace("www", "//staging") + "/backstop_data/html_report/index.html"
+            }
+            console.log(domain);
+            chrome.tabs.sendMessage(activeTab.id, {"message": "cssTest", "url": domain});
+        });
+    })
 }
